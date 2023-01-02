@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	public GameObject Player;
 	public TextMeshProUGUI scoreText;
 	public GameObject MainMenu;
+	public GameObject InfoScreenPanel;
 
 	private void Awake()
 	{
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
 		Player.SetActive(false);
 		MainMenu.SetActive(true);
+		InfoScreenPanel.SetActive(false);
 	}
 
 	private void Update()
@@ -36,7 +38,14 @@ public class GameManager : MonoBehaviour
 
 	public void InfoScreen()
 	{
+		InfoScreenPanel.SetActive(true);
+		MainMenu.SetActive(false);
+	}
 
+	public void CloseInfoScreen()
+	{
+		InfoScreenPanel.SetActive(false);
+		MainMenu.SetActive(true);
 	}
 
 	public void StartTheGame()
