@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-    public GameObject[] EnemiesList;
+    public GameObject[] EnemiesGroups;
+	public GameObject Player;
 	public TextMeshProUGUI scoreText;
+	public GameObject MainMenu;
 
 	private void Awake()
 	{
@@ -22,12 +25,24 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-
+		Player.SetActive(false);
+		MainMenu.SetActive(true);
 	}
 
 	private void Update()
 	{
 		
+	}
+
+	public void InfoScreen()
+	{
+
+	}
+
+	public void StartTheGame()
+	{
+		Player.SetActive(true);
+		MainMenu.SetActive(false);
 	}
 
 	public void EnemyHit()
@@ -40,7 +55,7 @@ public class GameManager : MonoBehaviour
 		float i = 0f;
 		if (_enemyHits == 5)
 		{
-			foreach(var enemy in EnemiesList)
+			foreach(var enemy in EnemiesGroups)
 			{
 				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
 				i += 0.1f;
@@ -50,7 +65,7 @@ public class GameManager : MonoBehaviour
 		i = 0f;
 		if (_enemyHits == 10)
 		{
-			foreach (var enemy in EnemiesList)
+			foreach (var enemy in EnemiesGroups)
 			{
 				enemy.GetComponentInParent<EnemyController>().moveDistance += i;
 				i += 0.1f;
@@ -60,7 +75,7 @@ public class GameManager : MonoBehaviour
 		i = 0f;
 		if (_enemyHits == 15)
 		{
-			foreach (var enemy in EnemiesList)
+			foreach (var enemy in EnemiesGroups)
 			{
 				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
 				i += 0.1f;
@@ -70,7 +85,7 @@ public class GameManager : MonoBehaviour
 		i = 0f;
 		if (_enemyHits == 20)
 		{
-			foreach (var enemy in EnemiesList)
+			foreach (var enemy in EnemiesGroups)
 			{
 				enemy.GetComponentInParent<EnemyController>().moveDistance += i;
 				i += 0.1f;
@@ -80,7 +95,7 @@ public class GameManager : MonoBehaviour
 		i = 0f;
 		if (_enemyHits == 25)
 		{
-			foreach (var enemy in EnemiesList)
+			foreach (var enemy in EnemiesGroups)
 			{
 				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
 				i += 0.1f;
