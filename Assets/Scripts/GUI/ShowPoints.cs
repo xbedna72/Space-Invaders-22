@@ -24,5 +24,6 @@ public class ShowPoints : MonoBehaviour
     {
         score += 1;
         pointsText.text = score.ToString();
+		GameManager.Instance.LevelUp(score);
     }
 }

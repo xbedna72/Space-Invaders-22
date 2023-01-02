@@ -40,6 +40,6 @@ public class EnemyBehaviour : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		EnemyManager.Instance.EnemyHit();
+		GameManager.Instance.EnemyHit();
 	}
 }
