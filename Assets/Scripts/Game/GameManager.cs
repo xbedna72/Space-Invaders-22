@@ -48,13 +48,20 @@ public class GameManager : MonoBehaviour
 		MainMenu.SetActive(true);
 	}
 
+	public void CloseEndScreen()
+	{
+		EndScreen.SetActive(false);
+		MainMenu.SetActive(true);
+	}
+
+	#region GameWorkflow
 	public void StartTheGame()
 	{
 		Player.SetActive(true);
 		MainMenu.SetActive(false);
 		StatusScreen.SetActive(true);
 		Timer.GetComponentInChildren<Timer>().StartTimer();
-		scoreText.GetComponentInParent<ShowPoints>().ResetScore();
+		scoreText.GetComponentInParent<PointsObject>().ResetScore();
 	}
 
 	public void GameOver(bool won)
@@ -81,15 +88,9 @@ public class GameManager : MonoBehaviour
 		EnemiesGroup[2] = Instantiate(EnemyGroupPrefab, new Vector3(0f, 4f, 0f), Quaternion.identity);
 	}
 
-	public void CloseEndScreen()
-	{
-		EndScreen.SetActive(false);
-		MainMenu.SetActive(true);
-	}
-
 	public void EnemyHit()
 	{
-		scoreText.GetComponentInParent<ShowPoints>().EnemyHit();
+		scoreText.GetComponentInParent<PointsObject>().EnemyHit();
 	}
 
 	public void LevelUp(int _enemyHits)
@@ -144,4 +145,5 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+	#endregion
 }

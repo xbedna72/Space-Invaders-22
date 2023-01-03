@@ -16,7 +16,6 @@ public class Timer : MonoBehaviour
         Debug.Log("Start timer");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (IsActive)

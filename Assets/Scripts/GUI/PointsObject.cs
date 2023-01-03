@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class ShowPoints : MonoBehaviour
+public class PointsObject : MonoBehaviour
 {
     private TextMeshProUGUI pointsText;
     public int score;
