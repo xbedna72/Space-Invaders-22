@@ -20,7 +20,7 @@ public class ShowPoints : MonoBehaviour
         pointsText.text = score.ToString();
 		if (score == 27) //maximum amount of enemies
 		{
-			GameManager.Instance.GameOver();
+			GameManager.Instance.GameOver(true);
 			return;
 		}
 		GameManager.Instance.LevelUp(score);

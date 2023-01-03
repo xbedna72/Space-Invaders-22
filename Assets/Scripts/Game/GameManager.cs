@@ -57,13 +57,13 @@ public class GameManager : MonoBehaviour
 		scoreText.GetComponentInParent<ShowPoints>().ResetScore();
 	}
 
-	public void GameOver()
+	public void GameOver(bool won)
 	{
 		Debug.Log("End of the game");
 		Player.SetActive(false);
 		StatusScreen.SetActive(false);
 		EndScreen.SetActive(true);
-		EndScreen.GetComponentInChildren<TextMeshProUGUI>().text = "TIME'S UP!!!\nFINAL SCORE: " + scoreText.text;
+		EndScreen.GetComponentInChildren<TextMeshProUGUI>().text = won ? "CONGRATULAIONS!!!\n\nYOU SAVED THE EARTH!!!" : "TIME'S UP!!!\n\nFINAL SCORE: " + scoreText.text;
 	}
 
 	public void ResetGame()

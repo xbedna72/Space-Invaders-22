@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
 			{
 				IsActive = false;
                 timeRemaining = 0;
-				GameManager.Instance.GameOver();
+				GameManager.Instance.GameOver(false);
 			}
 		}
     }
