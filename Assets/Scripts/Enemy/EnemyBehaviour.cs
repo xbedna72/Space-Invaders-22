@@ -35,11 +35,8 @@ public class EnemyBehaviour : MonoBehaviour
 
 			// Destroy the projectile game object
 			Destroy(collision.gameObject);
-		}
-	}
 
-	private void OnDestroy()
-	{
-		GameManager.Instance.EnemyHit();
+			GameManager.Instance.EnemyHit();
+		}
 	}
 }

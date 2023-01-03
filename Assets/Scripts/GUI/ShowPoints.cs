@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShowPoints : MonoBehaviour
 {
     private TextMeshProUGUI pointsText;
-    private int score;
+    public int score;
 
 	private void Awake()
 	{
@@ -24,6 +24,11 @@ public class ShowPoints : MonoBehaviour
     {
         score += 1;
         pointsText.text = score.ToString();
+		if (score == 27) //maximum amount of enemies
+		{
+			GameManager.Instance.GameOver();
+			return;
+		}
 		GameManager.Instance.LevelUp(score);
     }
 }

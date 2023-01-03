@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
 	public TextMeshProUGUI scoreText;
 	public GameObject MainMenu;
 	public GameObject InfoScreenPanel;
+	public GameObject EndScreen;
+	public GameObject Timer;
+	public GameObject StatusScreen;
+
 
 	private void Awake()
 	{
@@ -23,17 +27,13 @@ public class GameManager : MonoBehaviour
 		Instance = this;
 	}
 
-	// Start is called before the first frame update
 	void Start()
     {
 		Player.SetActive(false);
 		MainMenu.SetActive(true);
 		InfoScreenPanel.SetActive(false);
-	}
-
-	private void Update()
-	{
-		
+		EndScreen.SetActive(false);
+		StatusScreen.SetActive(false);
 	}
 
 	public void InfoScreen()
@@ -52,6 +52,23 @@ public class GameManager : MonoBehaviour
 	{
 		Player.SetActive(true);
 		MainMenu.SetActive(false);
+		StatusScreen.SetActive(true);
+		Timer.GetComponentInChildren<Timer>().StartTimer();
+	}
+
+	public void GameOver()
+	{
+		Debug.Log("End of the game");
+		Player.SetActive(false);
+		StatusScreen.SetActive(false);
+		EndScreen.SetActive(true);
+		EndScreen.GetComponentInChildren<TextMeshProUGUI>().text = "TIME'S UP!!!\nFINAL SCORE: " + scoreText.text;
+	}
+
+	public void CloseEndScreen()
+	{
+		EndScreen.SetActive(false);
+		MainMenu.SetActive(true);
 	}
 
 	public void EnemyHit()
