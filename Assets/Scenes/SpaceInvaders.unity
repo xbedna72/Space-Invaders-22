@@ -2669,10 +2669,8 @@ MonoBehaviour:
   m_Text: "Intergalactic species came to our Solar system to wipe humankind from
     the Earth. You are on a mission to defend our planet. And to save us from these
     invaders. But your time is limited. You got last 60 seconds to destroy as many
-    vessels as possible. \n\nHow many enemies are you able to shut down?\n\nThis
-    game is the final project in the course Basics of Game Development.\n\nMade by:
-    Marie Bednarova\nDate: 03.01.2023\nPlace: Tallinn, Estonia\nInstitution: Tallinn
-    University, School of Digital Technologies"
+    vessels as possible. \n\nHow many enemies are you able to shut down?\n\nMovements
+    of a spaceship: left and right arrows\nShooting: Space bar\n\nGood luck!!!"
 --- !u!222 &1991305644
 CanvasRenderer:
   m_ObjectHideFlags: 0
