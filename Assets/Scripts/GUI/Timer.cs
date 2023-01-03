@@ -13,7 +13,6 @@ public class Timer : MonoBehaviour
     {
 		timeRemaining = 60;
 		IsActive = true;
-        Debug.Log("Start timer");
     }
 
     void Update()
@@ -22,7 +21,6 @@ public class Timer : MonoBehaviour
         {
 			if (timeRemaining > 0)
 			{
-					Debug.Log(timeRemaining.ToString());
 					timeRemaining -= Time.deltaTime;
 					DisplayTime(timeRemaining);
 			}

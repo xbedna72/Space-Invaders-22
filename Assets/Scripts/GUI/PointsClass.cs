@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class PointsObject : MonoBehaviour
+public class PointsClass : MonoBehaviour
 {
     private TextMeshProUGUI pointsText;
     public int score;
 
-	void Start()
-    {
-        pointsText = gameObject.GetComponentInParent<TextMeshProUGUI>();
+	private void Awake()
+	{
+		pointsText = gameObject.GetComponentInParent<TextMeshProUGUI>();
 	}
 
 	public void EnemyHit()

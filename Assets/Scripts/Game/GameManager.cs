@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 	public GameObject StatusScreen;
 	public GameObject EnemyGroupPrefab;
 
+	private Timer TimerObject;
+	private PointsClass PointsObject;
+	private TextMeshProUGUI EndScreenText;
+
 	private void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -25,6 +29,10 @@ public class GameManager : MonoBehaviour
 			Destroy(Instance);
 		}
 		Instance = this;
+
+		TimerObject = Timer.GetComponentInChildren<Timer>();
+		PointsObject = scoreText.GetComponentInParent<PointsClass>();
+		EndScreenText = EndScreen.GetComponentInChildren<TextMeshProUGUI>();
 	}
 
 	void Start()
@@ -60,17 +68,16 @@ public class GameManager : MonoBehaviour
 		Player.SetActive(true);
 		MainMenu.SetActive(false);
 		StatusScreen.SetActive(true);
-		Timer.GetComponentInChildren<Timer>().StartTimer();
-		scoreText.GetComponentInParent<PointsObject>().ResetScore();
+		TimerObject.StartTimer();
+		PointsObject.ResetScore();
 	}
 
 	public void GameOver(bool won)
 	{
-		Debug.Log("End of the game");
 		Player.SetActive(false);
 		StatusScreen.SetActive(false);
 		EndScreen.SetActive(true);
-		EndScreen.GetComponentInChildren<TextMeshProUGUI>().text = won ? "CONGRATULAIONS!!!\n\nYOU SAVED THE EARTH!!!" : "TIME'S UP!!!\n\nFINAL SCORE: " + scoreText.text;
+		EndScreenText.text = won ? "CONGRATULATIONS!!!\n\nYOU SAVED THE EARTH!!!" : "TIME'S UP!!!\n\nFINAL SCORE: " + scoreText.text;
 	}
 
 	public void ResetGame()
@@ -90,58 +97,46 @@ public class GameManager : MonoBehaviour
 
 	public void EnemyHit()
 	{
-		scoreText.GetComponentInParent<PointsObject>().EnemyHit();
+		PointsObject.EnemyHit();
 	}
 
 	public void LevelUp(int _enemyHits)
 	{
-		float i = 0.1f;
+		float i = 0.3f;
 		if (_enemyHits == 5)
 		{
 			foreach(var enemy in EnemiesGroup)
 			{
 				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
-				i += 0.1f;
+				i -= 0.1f;
 			}
 		}
 
-		i = 0.5f;
 		if (_enemyHits == 10)
 		{
-			foreach (var enemy in EnemiesGroup)
-			{
-				enemy.GetComponentInParent<EnemyController>().moveDistance += i;
-				i += 0.1f;
-			}
+			EnemiesGroup[0].GetComponentInParent<EnemyController>().moveDistance = 1.5f;
+			EnemiesGroup[2].GetComponentInParent<EnemyController>().moveDistance = 1.5f;
 		}
 
-		i = 0.5f;
+		i = 0.2f;
 		if (_enemyHits == 15)
 		{
 			foreach (var enemy in EnemiesGroup)
 			{
-				enemy.GetComponentInParent<EnemyController>().timeStep = i;
-				enemy.GetComponentInParent<EnemyController>().moveDistance = i;
+				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
 			}
+			EnemiesGroup[1].GetComponentInParent<EnemyController>().moveDistance = 1.5f;
+			EnemiesGroup[0].GetComponentInParent<EnemyController>().moveDistance = 2.5f;
+			EnemiesGroup[2].GetComponentInParent<EnemyController>().moveDistance = 2.5f;
 		}
 
-		i = 0f;
+		i = 0.3f;
 		if (_enemyHits == 20)
 		{
 			foreach (var enemy in EnemiesGroup)
 			{
-				enemy.GetComponentInParent<EnemyController>().moveDistance += i;
-				i += 0.1f;
-			}
-		}
-
-		i = 0f;
-		if (_enemyHits == 25)
-		{
-			foreach (var enemy in EnemiesGroup)
-			{
 				enemy.GetComponentInParent<EnemyController>().timeStep -= i;
-				i += 0.1f;
+				i -= 0.1f;
 			}
 		}
 	}
