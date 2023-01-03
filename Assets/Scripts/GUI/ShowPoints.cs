@@ -9,15 +9,9 @@ public class ShowPoints : MonoBehaviour
     private TextMeshProUGUI pointsText;
     public int score;
 
-	private void Awake()
-	{
-		score = 0;
-	}
-
 	void Start()
     {
         pointsText = gameObject.GetComponentInParent<TextMeshProUGUI>();
-		pointsText.text = score.ToString();
 	}
 
 	public void EnemyHit()
@@ -31,4 +25,10 @@ public class ShowPoints : MonoBehaviour
 		}
 		GameManager.Instance.LevelUp(score);
     }
+
+	public void ResetScore()
+	{
+		score = 0;
+		pointsText.text = score.ToString();
+	}
 }

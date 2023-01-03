@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float timeRemaining = 60;
+    float timeRemaining;
     public TextMeshProUGUI timeText;
     bool IsActive = false;
 
     public void StartTimer()
     {
-        IsActive = true;
+		timeRemaining = 60;
+		IsActive = true;
         Debug.Log("Start timer");
     }
 
